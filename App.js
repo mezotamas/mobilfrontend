@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Elso from './Elso';
 import Keres from './Kereses';
 import Felvitel from './Felvitel';
+import Velemeny from './Velemeny';
+import Stats from './Statisztika';
 
 
 
@@ -42,6 +44,16 @@ function Keres_lap({ navigation }) {
     <Keres/>
   );
 }
+function Velemeny_lap({ navigation }) {
+  return (
+    <Velemeny/>
+  );
+}
+function Stats_lap({ navigation }) {
+  return (
+    <Stats/>
+  );
+}
 
 
 const Drawer = createDrawerNavigator();
@@ -55,6 +67,8 @@ export default function App() {
         <Drawer.Screen name="Első" component={Elso_lap} />
         <Drawer.Screen name="Keresés" component={Keres_lap} />
         <Drawer.Screen name="Felvitel" component={Felvitel_lap} />
+        <Drawer.Screen name="Vélemények" component={Velemeny_lap} />
+        <Drawer.Screen name="Statisztika" component={Stats_lap} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

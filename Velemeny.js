@@ -8,14 +8,14 @@ export default class FetchExample extends React.Component {
     this.state ={ 
         isLoading: true,
         szo:"",
-        bevitelvelemeny:"",
+        bevitelv:"",
         dataSource:[]
     }
   }
 
   
   componentDidMount(){
-    return fetch(IP.ipcim+"idezet")
+    return fetch(IP.ipcim+"velemenyek")
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -36,10 +36,10 @@ export default class FetchExample extends React.Component {
   keres=()=>{
       //alert("Hello")
       var bemenet={
-        bevitel1:this.state.szo
+        bevitelv:this.state.szo
       }
   
-    fetch(IP.ipcim+"keres", {
+    fetch(IP.ipcim+"keresv", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -111,24 +111,11 @@ export default class FetchExample extends React.Component {
           renderItem={({item}) => 
 
           <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
-          <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_szoveg} </Text>
-          <Text style={{fontStyle:"italic", fontSize:20,textAlign:"left",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_konyv} {item.idezet_fejezet_vers}  </Text>
+          <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.velemeny_szoveg} </Text>
+     
          
-          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.idezet_datum} </Text>
-           <Text style={{marginLeft:10, marginRight:10, marginTop:10}}>Mit üzen neked? Ide írhatod.</Text>
-           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}
-           style={{height: 40,marginLeft:10,marginRight:10}}
+          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.velemeny_idopont} </Text>
            
-           onChangeText={(beirtszoveg)=>this.setState({bevitelvelemeny:beirtszoveg})}
-           value={this.state.bevitelvelemeny}
-           ></TextInput>
-          <TouchableOpacity
-        style={styles.kekgomb}
-        onPress={async ()=>this.velemeny(item.idezet_id)}
-      >
-        <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Küldés</Text>
-      </TouchableOpacity>
-          <Text style={{marginLeft:10, marginRight:10, marginTop:10,fontSize:20,textAlign:"left",marginTop:15,marginBottom:5}}   >Kategória: {item.kategoria_nev}   </Text>
           
           </View> 
         
