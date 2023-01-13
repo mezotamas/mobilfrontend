@@ -8,6 +8,7 @@ export default class FetchExample extends React.Component {
     this.state ={ 
         isLoading: true,
         szo:"",
+        bevitelvelemeny:"",
         dataSource:[]
     }
   }
@@ -54,6 +55,28 @@ export default class FetchExample extends React.Component {
       );
   
   }
+  velemeny=(id)=>{
+    alert(id)
+    var bemenet={
+      bevitelvelemeny:this.state.bevitelvelemeny
+      
+    }
+    fetch(IP.ipcim+"velemeny", {
+      method: "POST",
+      body: JSON.stringify(bemenet),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    }
+  
+  )
+  .then(x => x.json())
+  .then(y => {
+    (JSON.stringify (y))
+    this.setState({dataSource: y})
+  }
+    
+    );
+  }
+  
   render(){
 
     if(this.state.isLoading){
@@ -93,10 +116,15 @@ export default class FetchExample extends React.Component {
          
           <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.idezet_datum} </Text>
            <Text style={{marginLeft:10, marginRight:10, marginTop:10}}>Mit üzen neked? Ide írhatod.</Text>
-           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}></TextInput>
+           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}
+           style={{height: 40,marginLeft:10,marginRight:10}}
+           
+           onChangeText={(beirtszoveg)=>this.setState({bevitelvelemeny:beirtszoveg})}
+           value={this.state.bevitelvelemeny}
+           ></TextInput>
           <TouchableOpacity
         style={styles.kekgomb}
-        onPress={async ()=>this.szavazat(item.film_id)}
+        onPress={async ()=>this.velemeny(item.idezet_id)}
       >
         <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Küldés</Text>
       </TouchableOpacity>
