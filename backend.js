@@ -116,7 +116,8 @@ app.get('/statisztika1', (req, res) => {
 
     dbconn()
     
-    connection.query("SELECT COUNT(*) FROM idezet", function (err, rows, fields) {
+    connection.query("SELECT count(idezet_id) as idezet_statisztika  FROM idezet", function (err, rows, fields)
+     {
       if (err) 
         console.log( err)
       else{
@@ -129,7 +130,23 @@ app.get('/statisztika1', (req, res) => {
 
     
   })
- 
+ app.get('/statisztika2', (req, res) => {
+
+    dbconn()
+    
+    connection.query("SELECT count(velemeny_id) as velemeny_statisztika  FROM velemeny", function (err, rows, fields) {
+      if (err) 
+        console.log( err)
+      else{
+      console.log("Sikeres felvitel!")
+      res.send(rows)}
+      
+    })
+    
+    connection.end()
+
+    
+  })
 app.post('/velemeny', (req, res) => {
 
     dbconn()
