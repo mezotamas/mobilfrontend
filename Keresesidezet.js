@@ -15,7 +15,7 @@ export default class FetchExample extends React.Component {
 
   
   componentDidMount(){
-    return fetch(IP.ipcim+"velemenyek")
+    return fetch(IP.ipcim+"idezet")
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -39,7 +39,7 @@ export default class FetchExample extends React.Component {
         bevitelv:this.state.szo
       }
   
-    fetch(IP.ipcim+"keresv", {
+    fetch(IP.ipcim+"idezet", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -61,7 +61,7 @@ export default class FetchExample extends React.Component {
       bevitelvelemeny:this.state.bevitelvelemeny
       
     }
-    fetch(IP.ipcim+"velemeny", {
+    fetch(IP.ipcim+"idezet", {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -116,10 +116,10 @@ export default class FetchExample extends React.Component {
           <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_szoveg} </Text>
      
           
-          <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.velemeny_szoveg} </Text>
-     
-         
-          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.velemeny_idopont} </Text>
+    
+          <Text style={{fontStyle:"italic", fontSize:20,textAlign:"left",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_konyv} {item.idezet_fejezet_vers}  </Text>
+       
+          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.idezet_datum} </Text>
          
           </View> 
         

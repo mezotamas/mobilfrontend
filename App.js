@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Elso from './Elso';
 import Keres from './Kereses';
+import Keresidezet from './Keresesidezet';
 import Felvitel from './Felvitel';
 import Velemeny from './Velemeny';
 import Stats from './Statisztika';
@@ -31,6 +32,11 @@ function NotificationsScreen({ navigation }) {
 function Elso_lap({ navigation }) {
   return (
     <Elso/>
+  );
+}
+function Keresidezet_lap({ navigation }) {
+  return (
+    <Keresidezet/>
   );
 }
 function Felvitel_lap({ navigation }) {
@@ -66,6 +72,8 @@ export default function App() {
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
         <Drawer.Screen name="Első" component={Elso_lap} />
         <Drawer.Screen name="Keresés" component={Keres_lap} />
+        <Drawer.Screen name="Idézet keresése" component={Keresidezet_lap} />
+        
         <Drawer.Screen name="Felvitel" component={Felvitel_lap} />
         <Drawer.Screen name="Vélemények" component={Velemeny_lap} />
         <Drawer.Screen name="Statisztika" component={Stats_lap} />

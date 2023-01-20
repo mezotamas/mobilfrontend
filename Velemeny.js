@@ -8,14 +8,15 @@ export default class FetchExample extends React.Component {
     this.state ={ 
         isLoading: true,
         szo:"",
-        bevitelv:"",
+        bevitelvelemeny:"",
+        bevitelvelemenyid:"",
         dataSource:[]
     }
   }
 
   
   componentDidMount(){
-    return fetch(IP.ipcim+"velemenyek")
+    return fetch(IP.ipcim+"idezet")
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -36,10 +37,10 @@ export default class FetchExample extends React.Component {
   keres=()=>{
       //alert("Hello")
       var bemenet={
-        bevitelv:this.state.szo
+        bevitel1:this.state.szo
       }
   
-    fetch(IP.ipcim+"keresv", {
+    fetch(IP.ipcim+"keres", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -56,9 +57,10 @@ export default class FetchExample extends React.Component {
   
   }
   velemeny=(id)=>{
-    alert("sikeres")
+    alert(id)
     var bemenet={
-      bevitelvelemeny:this.state.bevitelvelemeny
+      bevitelvelemeny:this.state.bevitelvelemeny,
+      bevitelvelemenyid:this.state.bevitelvelemenyid
       
     }
     fetch(IP.ipcim+"velemeny", {
@@ -109,20 +111,43 @@ export default class FetchExample extends React.Component {
         
           data={this.state.dataSource}
           renderItem={({item}) => 
-
+          
           <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
-          <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.velemeny_szoveg} </Text>
-     
+             <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_id} </Text>
          
-          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.velemeny_idopont} </Text>
+          <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_szoveg} </Text>
+          <Text style={{fontStyle:"italic", fontSize:20,textAlign:"left",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_konyv} {item.idezet_fejezet_vers}  </Text>
+         
+          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.idezet_datum} </Text>
+          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >{item.velemeny_szoveg} </Text>
+         
+           <Text style={{marginLeft:10, marginRight:10, marginTop:10}}>Mit üzen neked? Ide írhatod.</Text>
+           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}
+           style={{height: 40,marginLeft:10,marginRight:10}}
            
+           onChangeText={(beirtszoveg)=>this.setState({bevitelvelemeny:beirtszoveg})}
+           value={this.state.bevitelvelemeny}
+           ></TextInput>
+           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}
+           style={{height: 40,marginLeft:10,marginRight:10}}
+           
+           onChangeText={(beirtszoveg)=>this.setState({bevitelvelemenyid:beirtszoveg})}
+           value={this.state.bevitelvelemenyid}
+           ></TextInput>
+          <TouchableOpacity
+        style={styles.kekgomb}
+        onPress={async ()=>this.velemeny(item.idezet_id)}
+      >
+        <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Küldés</Text>
+      </TouchableOpacity>
+          <Text style={{marginLeft:10, marginRight:10, marginTop:10,fontSize:20,textAlign:"left",marginTop:15,marginBottom:5}}   >Kategória: {item.kategoria_nev}   </Text>
           
           </View> 
         
         }
 
         
-          keyExtractor={({film_id}, index) => film_id}
+          keyExtractor={({velemeny_id}, index) => velemeny_id}
         />
       </View>
     );

@@ -63,7 +63,7 @@ app.get('/idezet', (req, res) => {
 
   dbconn()
     
-    connection.query('SELECT * from idezet inner join kategoria on idezet_kategoria=kategoria_id', function (err, rows, fields) {
+    connection.query('SELECT * from idezet inner join kategoria on idezet_kategoria=kategoria_id inner join velemeny on idezet_velemeny_id=velemeny_id', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -99,7 +99,7 @@ app.get('/velemenyek', (req, res) => {
 
     dbconn()
     
-    connection.query("select * from velemeny", function (err, rows, fields) {
+    connection.query("select * from velemeny inner join idezet on idezet_id=velemeny_idezet_id", function (err, rows, fields) {
       if (err) 
         console.log( err)
       else{
@@ -116,7 +116,7 @@ app.get('/statisztika1', (req, res) => {
 
     dbconn()
     
-    connection.query("SELECT count(idezet_id) as idezet_statisztika  FROM idezet", function (err, rows, fields)
+    connection.query("SELECT count(idezet_id) as idezetek_szama  FROM idezet", function (err, rows, fields)
      {
       if (err) 
         console.log( err)
@@ -134,7 +134,7 @@ app.get('/statisztika1', (req, res) => {
 
     dbconn()
     
-    connection.query("SELECT count(velemeny_id) as velemeny_statisztika  FROM velemeny", function (err, rows, fields) {
+    connection.query("SELECT count(velemeny_id) as velemenyek_szama  FROM velemeny", function (err, rows, fields) {
       if (err) 
         console.log( err)
       else{
@@ -151,7 +151,7 @@ app.post('/velemeny', (req, res) => {
 
     dbconn()
     
-    connection.query("INSERT INTO velemeny  VALUES (NULL, '"+req.body.bevitelvelemeny+"',NOW())", function (err, rows, fields) {
+    connection.query("INSERT INTO velemeny  VALUES (NULL, '"+req.body.bevitelvelemeny+"',NOW(),'"+req.body.bevitelvelemenyid+"')", function (err, rows, fields) {
       if (err) 
         console.log( err)
       else{
