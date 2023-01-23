@@ -86,18 +86,24 @@ export default class FetchExample extends React.Component {
        <TextInput
         style={{height: 40,marginLeft:10,marginRight:10}}
         placeholder="Könyv"
-        onChangeText={(beirtszoveg)=>this.setState({bevitel3:beirtszoveg})}
-        value={this.state.bevitel3}
+        onChangeText={(beirtszoveg)=>this.setState({bevitel2:beirtszoveg})}
+        value={this.state.bevitel2}
       />
        <TextInput
         style={{height: 40,marginLeft:10,marginRight:10}}
         placeholder="Fejezet és vers"
+        onChangeText={(beirtszoveg)=>this.setState({bevitel3:beirtszoveg})}
+        value={this.state.bevitel3}
+      />
+      <TextInput
+        style={{height: 40,marginLeft:10,marginRight:10}}
+        placeholder="Kategória"
         onChangeText={(beirtszoveg)=>this.setState({bevitel4:beirtszoveg})}
         value={this.state.bevitel4}
       />
       <TextInput
         style={{height: 40,marginLeft:10,marginRight:10}}
-        placeholder="Kategória"
+        placeholder="Kategória2"
         onChangeText={(beirtszoveg)=>this.setState({bevitel5:beirtszoveg})}
         value={this.state.bevitel5}
       />

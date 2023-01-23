@@ -1,5 +1,8 @@
 import React from 'react';
 import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu } from 'react-native';
+import moment from 'moment';
+import 'moment/locale/hu'  
+moment.locale('hu')
 const IP=require("./Ipcim")
 export default class FetchExample extends React.Component {
 
@@ -119,7 +122,7 @@ export default class FetchExample extends React.Component {
           <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.velemeny_szoveg} </Text>
      
          
-          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {item.velemeny_idopont} </Text>
+          <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {moment(item.velemeny_idopont).format('YYYY MMMM DD H:mm:ss')} </Text>
          
           </View> 
         
