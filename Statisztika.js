@@ -114,7 +114,7 @@ export default class FetchExample extends React.Component {
            style={styles.kekgomb}
            onPress={async ()=>this.frissit()}
          >
-           <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Küldés</Text>
+           <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Frissítés</Text>
          </TouchableOpacity>
         <FlatList
         
