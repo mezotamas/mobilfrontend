@@ -54,8 +54,45 @@ export default class FetchExample extends React.Component {
       
       
   }
+  frissit=()=>{
+    
+    
+    
+    fetch(IP.ipcim+"statisztika1" )
+    
+    .then((response) => response.json())
+    .then((responseJson) => {
 
+      this.setState({
+        isLoading: false,
+        dataSource: responseJson,
+      }, function(){
+
+      });
+
+    })
+    .catch((error) =>{
+      console.error(error);
+    });
+    
+    fetch(IP.ipcim+"statisztika2" )
   
+    .then((response) => response.json())
+    .then((responseJson) => {
+
+      this.setState({
+        isLoading: false,
+        dataSource2: responseJson,
+      }, function(){
+
+      });
+
+    })
+    .catch((error) =>{
+      console.error(error);
+    });
+    
+}
  
   
   render(){
@@ -73,6 +110,12 @@ export default class FetchExample extends React.Component {
 
       <View style={{ paddingBottom:20 , paddingTop:20,borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:1}}>
         {/*---------------------------------------------------kereses */}
+        <TouchableOpacity
+           style={styles.kekgomb}
+           onPress={async ()=>this.frissit()}
+         >
+           <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Küldés</Text>
+         </TouchableOpacity>
         <FlatList
         
           data={this.state.dataSource}
@@ -96,6 +139,7 @@ export default class FetchExample extends React.Component {
                    <Text style={{marginLeft:10, marginTop:10, marginRight:10, marginBottom:10, fontSize:20}}>Összes vélemény: {item.velemenyek_szama}</Text>
 
         </View> 
+           
       
       }
 
