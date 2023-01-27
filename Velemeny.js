@@ -15,19 +15,35 @@ export default class FetchExample extends React.Component {
         bevitel1:"",
         bevitelvelemenyid:"",
         valaszto2:2,
-        dataSource:[]
+        dataSource:[],
+        dataSource2:[]
     }
   }
 
   
   componentDidMount(){
-    return fetch(IP.ipcim+"velemenyek")
+    fetch(IP.ipcim+"velemenyek")
       .then((response) => response.json())
       .then((responseJson) => {
 
         this.setState({
           isLoading: false,
           dataSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+      fetch(IP.ipcim+"idezet")
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource2: responseJson,
         }, function(){
 
         });
@@ -45,7 +61,7 @@ export default class FetchExample extends React.Component {
         bevitel1:this.state.szo
       }
   
-    fetch(IP.ipcim+"keresidezety", {
+    fetch(IP.ipcim+"velemenyek", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -68,7 +84,7 @@ export default class FetchExample extends React.Component {
       bevitelvelemenyid:this.state.valaszto2
       
     }
-    fetch(IP.ipcim+"velemenyek", {
+    fetch(IP.ipcim+"velemeny", {
       method: "POST",
       body: JSON.stringify(bemenet),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -105,8 +121,8 @@ export default class FetchExample extends React.Component {
            <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}
            style={{height: 40,marginLeft:10,marginRight:10}}
            
-           onChangeText={(beirtszoveg)=>this.setState({bevitelvelemeny:beirtszoveg})}
-           value={this.state.bevitelvelemeny}
+           onChangeText={(beirtszoveg)=>this.setState({bevitel1:beirtszoveg})}
+           value={this.state.bevitel1}
            ></TextInput>
           
           
@@ -119,7 +135,7 @@ this.setState({valaszto2:ertek})
 
 
               }>
-                  {this.state.dataSource.map(item=>
+                  {this.state.dataSource2.map(item=>
 
                 <Picker.Item label={item.idezet_szoveg} value={item.idezet_id} />
           )}
@@ -127,7 +143,7 @@ this.setState({valaszto2:ertek})
               </Picker>
               <TouchableOpacity
         style={styles.kekgomb}
-        onPress={async ()=>this.velemeny(item.velemeny_id)}
+        onPress={async ()=>this.velemeny()}
       >
         <Text style={{color:"white", fontWeight:"bold",fontSize:15}}  >Küldés</Text>
       </TouchableOpacity>
