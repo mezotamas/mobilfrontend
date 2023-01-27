@@ -9,7 +9,7 @@ export default class FetchExample extends React.Component {
     this.state ={ 
         isLoading: true,
         szo:"",
-        bevitelv:"",
+        bevitel1:"",
         dataSource:[]
     }
   }
@@ -37,10 +37,10 @@ export default class FetchExample extends React.Component {
   keres=()=>{
       //alert("Hello")
       var bemenet={
-        bevitelv:this.state.szo
+        bevitel1:this.state.szo
       }
   
-    fetch(IP.ipcim+"idezet", {
+    fetch(IP.ipcim+"keresidezet", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}

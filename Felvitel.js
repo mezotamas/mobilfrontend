@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 const IP=require("./Ipcim")
 export default class FetchExample extends React.Component {
 
@@ -11,14 +12,14 @@ export default class FetchExample extends React.Component {
         bevitel2:"",
         bevitel3:"",
         bevitel4:"",
-        bevitel5:"",
+        valaszto:1,
         dataSource:[]
     }
   }
 
   
   componentDidMount(){
-    return fetch(IP.ipcim+"idezet")
+    return fetch(IP.ipcim+"kategoria")
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -42,8 +43,7 @@ export default class FetchExample extends React.Component {
         bevitel1:this.state.bevitel1,
         bevitel2:this.state.bevitel2,
         bevitel3:this.state.bevitel3,
-        bevitel4:this.state.bevitel4,
-        bevitel5:this.state.bevitel5
+        bevitel4:this.state.valaszto
       }
   
     fetch(IP.ipcim+"felvitel", {
@@ -95,18 +95,21 @@ export default class FetchExample extends React.Component {
         onChangeText={(beirtszoveg)=>this.setState({bevitel3:beirtszoveg})}
         value={this.state.bevitel3}
       />
-      <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
-        placeholder="Kategória"
-        onChangeText={(beirtszoveg)=>this.setState({bevitel4:beirtszoveg})}
-        value={this.state.bevitel4}
-      />
-      <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
-        placeholder="Kategória2"
-        onChangeText={(beirtszoveg)=>this.setState({bevitel5:beirtszoveg})}
-        value={this.state.bevitel5}
-      />
+      <Picker 
+                style={{backgroundColor:"#42adf5",color:"white",marginTop:10, marginBottom:10}}
+                selectedValue={this.state.valaszto}
+                onValueChange={(ertek) => 
+this.setState({valaszto:ertek})
+
+
+              }>
+                  {this.state.dataSource.map(item=>
+
+                <Picker.Item label={item.kategoria_nev} value={item.kategoria_id} />
+          )}
+
+              </Picker>
+    
         <TouchableOpacity style={{marginTop:10}}
         
         onPress={()=>this.felvitel()}

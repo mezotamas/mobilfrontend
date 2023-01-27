@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu } from 'react-native';
 import moment from 'moment';
-import 'moment/locale/hu'  
-moment.locale('hu')
+import 'moment/locale/hu' ; 
+moment.locale('hu');
 const IP=require("./Ipcim")
 export default class FetchExample extends React.Component {
 
@@ -42,7 +42,7 @@ export default class FetchExample extends React.Component {
         bevitelv:this.state.szo
       }
   
-    fetch(IP.ipcim+"keresv", {
+    fetch(IP.ipcim+"keresidezet", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
