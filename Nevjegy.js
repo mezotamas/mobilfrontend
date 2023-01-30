@@ -7,7 +7,7 @@ export default class ButtonBasics extends Component {
   render() {
     return (
       <View style={styles.container}>
-       <Text>© Copyright: Mező Tamás 13/5, DSZC Baross Gábor Technikum</Text>
+       <Text style={{textAlign:"center"}}>© Copyright: Mező Tamás 13/5, DSZC Baross Gábor Technikum</Text>
       </View>
     );
   }

@@ -42,7 +42,7 @@ export default class FetchExample extends React.Component {
         bevitelv:this.state.szo
       }
   
-    fetch(IP.ipcim+"keresidezet", {
+    fetch(IP.ipcim+"keresvelemeny", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
