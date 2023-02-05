@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post('/keres', (req, res) => {
+app.post('/keresidezet', (req, res) => {
   
     dbconn()
     
@@ -41,12 +41,12 @@ app.post('/keres', (req, res) => {
     connection.end()
 
 })
-app.post('/keresv', (req, res) => {
+app.post('/keresvelemeny', (req, res) => {
   
     dbconn()
     
-    
-    let parancs='SELECT * from velemeny where velemeny_szoveg like "%'+req.body.bevitelv+'%"'
+    let f='"%'+req.body.bevitel1+'%"'
+    let parancs='SELECT * from velemeny where velemeny_szoveg like '+f
     connection.query(parancs, function (err, rows, fields) {
       if (err) throw err
     
@@ -63,7 +63,24 @@ app.get('/idezet', (req, res) => {
 
   dbconn()
     
-    connection.query('SELECT * from idezet inner join kategoria on idezet_kategoria=kategoria_id inner join velemeny on idezet_velemeny_id=velemeny_id', function (err, rows, fields) {
+    connection.query('SELECT * from idezet inner join kategoria on idezet_kategoria=kategoria_id ', function (err, rows, fields) {
+      if (err) throw err
+    
+      console.log(rows)
+      res.send(rows)
+    })
+    
+    connection.end()
+
+
+
+    
+  })
+  app.get('/kategoria', (req, res) => {
+
+  dbconn()
+    
+    connection.query('SELECT * from kategoria', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -151,7 +168,7 @@ app.post('/velemeny', (req, res) => {
 
     dbconn()
     
-    connection.query("INSERT INTO velemeny  VALUES (NULL, '"+req.body.bevitelvelemeny+"',NOW(),'"+req.body.bevitelvelemenyid+"')", function (err, rows, fields) {
+    connection.query("INSERT INTO velemeny  VALUES (NULL, '"+req.body.bevitel1+"',NOW(),'"+req.body.bevitelvelemenyid+"')", function (err, rows, fields) {
       if (err) 
         console.log( err)
       else{
