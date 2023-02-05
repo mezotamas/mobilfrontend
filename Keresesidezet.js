@@ -9,14 +9,15 @@ export default class FetchExample extends React.Component {
     this.state ={ 
         isLoading: true,
         szo:"",
-        bevitelv:"",
-        dataSource:[]
+        bevitel1:"",
+        dataSource:[],
+        dataSource2:[]
     }
   }
 
   
   componentDidMount(){
-    return fetch(IP.ipcim+"idezet")
+     fetch(IP.ipcim+"idezet")
       .then((response) => response.json())
       .then((responseJson) => {
 
@@ -31,16 +32,31 @@ export default class FetchExample extends React.Component {
       .catch((error) =>{
         console.error(error);
       });
+      fetch(IP.ipcim+"kategoria")
+      .then((response) => response.json())
+      .then((responseJson) => {
+      
+      this.setState({
+               isLoading: false,
+               dataSource2: responseJson,
+             }, function(){
+    
+             });
+    
+    })
+     .catch((error) =>{
+     console.error(error);
+    });
   }
 
 
   keres=()=>{
       //alert("Hello")
       var bemenet={
-        bevitelv:this.state.szo
+        bevitel1:this.state.szo
       }
   
-    fetch(IP.ipcim+"idezet", {
+    fetch(IP.ipcim+"keresidezet", {
         method: "POST",
         body: JSON.stringify(bemenet),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -55,27 +71,6 @@ export default class FetchExample extends React.Component {
       
       );
   
-  }
-  velemeny=(id)=>{
-    alert("sikeres")
-    var bemenet={
-      bevitelvelemeny:this.state.bevitelvelemeny
-      
-    }
-    fetch(IP.ipcim+"idezet", {
-      method: "POST",
-      body: JSON.stringify(bemenet),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-    }
-  
-  )
-  .then(x => x.json())
-  .then(y => {
-    (JSON.stringify (y))
-    this.setState({dataSource: y})
-  }
-    
-    );
   }
   
   render(){
@@ -109,6 +104,8 @@ export default class FetchExample extends React.Component {
         <FlatList
         
           data={this.state.dataSource}
+          
+          
           renderItem={({item}) => 
 
           <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
@@ -121,7 +118,7 @@ export default class FetchExample extends React.Component {
           <Text style={{fontStyle:"italic", fontSize:20,textAlign:"left",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_konyv} {item.idezet_fejezet_vers}  </Text>
        
           <Text style={{color:"black",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}   >Időpont: {moment(item.idezet_datum).format('YYYY MMMM DD H:mm:ss')} </Text>
-         
+          <Text style={{color:"blue",fontSize:20,textAlign:"center",marginTop:15,marginBottom:5}}>Kategória: {item.kategoria_nev}</Text>
           </View> 
         
         }

@@ -1,3 +1,3 @@
 module.exports = {
-    ipcim:'http://mezo-tamas-zsolt-back.dszcbaross.tk/'
+    ipcim:'http://nodejs.dszcbaross.edu.hu:22007/'
 };
