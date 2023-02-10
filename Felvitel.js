@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu } from 'react-native';
+import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 const IP=require("./Ipcim")
+
 export default class FetchExample extends React.Component {
 
   constructor(props){
@@ -15,6 +16,7 @@ export default class FetchExample extends React.Component {
         valaszto:1,
         dataSource:[]
     }
+    
   }
 
   
@@ -45,6 +47,8 @@ export default class FetchExample extends React.Component {
         bevitel3:this.state.bevitel3,
         bevitel4:this.state.valaszto
       }
+      
+
   
     fetch(IP.ipcim+"felvitel", {
         method: "POST",
@@ -71,6 +75,7 @@ export default class FetchExample extends React.Component {
         </View>
       )
     }
+
 
     return(
       <View style={{flex: 1, paddingTop:20}}>

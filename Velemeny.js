@@ -170,6 +170,8 @@ this.setState({valaszto2:ertek})
           renderItem={({item}) => 
           
           <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
+                 <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Sorszám: #{item.velemeny_id}</Text>
+  
                  <Text style={{marginRight:"auto",marginLeft:"auto",color:"green",fontStyle:"italic", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Felhasználó véleménye:</Text>
   
              <Text style={{marginRight:"auto",marginLeft:"auto",color:"green",fontStyle:"italic", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.velemeny_szoveg} </Text>
