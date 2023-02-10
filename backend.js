@@ -30,7 +30,7 @@ app.post('/keresidezet', (req, res) => {
     dbconn()
     
     
-    let parancs='SELECT * from idezet inner join kategoria on idezet_kategoria=kategoria_id where idezet.idezet_szoveg like "%'+req.body.bevitel1+'%"'
+    let parancs='SELECT * from idezet inner join kategoria on idezet_kategoria=kategoria_id where idezet.idezet_szoveg like "%'+req.body.bevitel1+'%" order by idezet_id desc'
     connection.query(parancs, function (err, rows, fields) {
       if (err) throw err
     
