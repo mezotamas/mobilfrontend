@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "AwesomeProject",
+    "name": "Mit üzen neked?",
     "slug": "AwesomeProject",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.mezotamas.mituzenneked"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "24705e7e-b3e6-40b4-ae3b-8dc9fc96931b"
+      }
     }
   }
 }

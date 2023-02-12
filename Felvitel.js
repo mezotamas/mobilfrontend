@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu } from 'react-native';
+import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 const IP=require("./Ipcim")
+
 export default class FetchExample extends React.Component {
 
   constructor(props){
@@ -15,6 +16,7 @@ export default class FetchExample extends React.Component {
         valaszto:1,
         dataSource:[]
     }
+    
   }
 
   
@@ -45,6 +47,8 @@ export default class FetchExample extends React.Component {
         bevitel3:this.state.bevitel3,
         bevitel4:this.state.valaszto
       }
+      
+
   
     fetch(IP.ipcim+"felvitel", {
         method: "POST",
@@ -72,25 +76,26 @@ export default class FetchExample extends React.Component {
       )
     }
 
+
     return(
       <View style={{flex: 1, paddingTop:20}}>
         {/*---------------------------------------------------kereses */}
         <Text style={{marginLeft:10, marginTop:10, marginRight:10, marginBottom:10, fontSize:20}}>Bibliai ige:</Text>
         <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
+        style={{height: 40,marginLeft:10,marginRight:10, borderBottomColor: "blue", borderBottomWidth:2}}
         placeholder="Ige szövege"
         onChangeText={(beirtszoveg)=>this.setState({bevitel1:beirtszoveg})}
         value={this.state.bevitel1}
       />
        
        <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
+        style={{height: 40,marginLeft:10,marginRight:10, borderBottomColor: "blue", borderBottomWidth:2}}
         placeholder="Könyv"
         onChangeText={(beirtszoveg)=>this.setState({bevitel2:beirtszoveg})}
         value={this.state.bevitel2}
       />
        <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
+        style={{height: 40,marginLeft:10,marginRight:10, borderBottomColor: "blue", borderBottomWidth:2}}
         placeholder="Fejezet és vers"
         onChangeText={(beirtszoveg)=>this.setState({bevitel3:beirtszoveg})}
         value={this.state.bevitel3}

@@ -88,7 +88,7 @@ export default class FetchExample extends React.Component {
         {/*---------------------------------------------------kereses */}
         <Text style={{marginLeft:10, marginTop:10, marginRight:10, marginBottom:10, fontSize:20}}>Add meg a keresendő szót:</Text>
         <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
+        style={{height: 40,marginLeft:10,marginRight:10, borderBottomColor: "blue", borderBottomWidth:2}}
         placeholder="Szó megadása"
         onChangeText={(beirtszoveg)=>this.setState({szo:beirtszoveg})}
         value={this.state.szo}
@@ -102,15 +102,18 @@ export default class FetchExample extends React.Component {
 
         {/*---------------------------------------------------talalatok */}
         <FlatList
+          
         
           data={this.state.dataSource}
           
           
           renderItem={({item}) => 
+      
 
           <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
 
-         
+<Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Sorszám: #{item.idezet_id} </Text>
+     
           <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.idezet_szoveg} </Text>
      
           
@@ -122,9 +125,12 @@ export default class FetchExample extends React.Component {
           </View> 
         
         }
+      
 
         
-          keyExtractor={({film_id}, index) => film_id}
+          //keyExtractor={({film_id}, index) => film_id}
+      
+      
         />
       </View>
     );
@@ -142,4 +148,5 @@ const styles = StyleSheet.create({
     marginRight:"auto",
      marginTop:10
   }
+  
 });

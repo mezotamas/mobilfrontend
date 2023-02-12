@@ -118,8 +118,8 @@ export default class FetchExample extends React.Component {
 {/*-----------------------------------------------------------------------------Felvital */}
 
 <Text style={{marginLeft:10, marginRight:10, marginTop:10}}>Mit üzen neked? Ide írhatod.</Text>
-           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10,borderWidth:1,backgroundColor:"white"}}
-           style={{height: 40,marginLeft:10,marginRight:10}}
+           <TextInput style={{marginLeft:10, marginRight:10, marginTop:10, borderBottomColor: "blue", borderBottomWidth:2}}
+           placeholder="Üzenet szövege..."
            
            onChangeText={(beirtszoveg)=>this.setState({bevitel1:beirtszoveg})}
            value={this.state.bevitel1}
@@ -150,7 +150,7 @@ this.setState({valaszto2:ertek})
         {/*---------------------------------------------------kereses */}
         <Text style={{marginLeft:10, marginTop:10, marginRight:10, marginBottom:10, fontSize:20}}>Add meg a keresendő szót:</Text>
         <TextInput
-        style={{height: 40,marginLeft:10,marginRight:10}}
+        style={{height: 40,marginLeft:10,marginRight:10, borderBottomColor: "blue", borderBottomWidth:2}}
         placeholder="Szó megadása"
         onChangeText={(beirtszoveg)=>this.setState({szo:beirtszoveg})}
         value={this.state.szo}
@@ -170,6 +170,8 @@ this.setState({valaszto2:ertek})
           renderItem={({item}) => 
           
           <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
+                 <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Sorszám: #{item.velemeny_id}</Text>
+  
                  <Text style={{marginRight:"auto",marginLeft:"auto",color:"green",fontStyle:"italic", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Felhasználó véleménye:</Text>
   
              <Text style={{marginRight:"auto",marginLeft:"auto",color:"green",fontStyle:"italic", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >{item.velemeny_szoveg} </Text>
