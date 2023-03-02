@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, FlatList, ActivityIndicator, Text, View,  TouchableOpacity, TextInput, Button, Menu } from 'react-native';
 import moment from 'moment';
-import 'moment/locale/hu'  ;
+import 'moment/locale/hu'  
+moment.locale('hu')
 const IP=require("./Ipcim")
 export default class FetchExample extends React.Component {
 
