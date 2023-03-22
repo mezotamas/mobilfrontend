@@ -53,33 +53,6 @@ export default class FetchExample extends React.Component {
         console.error(error);
       });
   }
-
-
-  keres=()=>{
-      //alert("Hello")
-    if(this.state.bevitel1=="" )
-      alert("Nem maradhat üresen!")
-      else{
-      var bemenet={
-        bevitel1:this.state.szo
-      }
-  
-    fetch(IP.ipcim+"keresvelemeny", {
-        method: "POST",
-        body: JSON.stringify(bemenet),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-      }
-    
-    )
-    .then(x => x.json())
-    .then(y => {
-      (JSON.stringify (y))
-      this.setState({dataSource: y})
-    }
-      
-      );
-  
-  }}
   velemeny=()=>{
     if(this.state.bevitel1=="" )
       alert("Nem maradhat üresen!")
@@ -105,6 +78,31 @@ export default class FetchExample extends React.Component {
     );
   }
   }
+
+  keres=()=>{
+      //alert("Hello")
+    
+      var bemenet={
+        bevitel1:this.state.szo
+      }
+  
+    fetch(IP.ipcim+"keresvelemeny", {
+        method: "POST",
+        body: JSON.stringify(bemenet),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      }
+    
+    )
+    .then(x => x.json())
+    .then(y => {
+      (JSON.stringify (y))
+      this.setState({dataSource: y})
+    }
+      
+      );
+  
+  }
+  
   render(){
 
     if(this.state.isLoading){
