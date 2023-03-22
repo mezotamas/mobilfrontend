@@ -54,6 +54,9 @@ export default class FetchExample extends React.Component {
 
   keres=()=>{
       //alert("Hello")
+    if(this.state.bevitel1=="" )
+      alert("Nem maradhat üresen!")
+      else{
       var bemenet={
         bevitel1:this.state.szo
       }
@@ -73,7 +76,7 @@ export default class FetchExample extends React.Component {
       
       );
   
-  }
+  }}
   
   render(){
 
@@ -112,7 +115,7 @@ export default class FetchExample extends React.Component {
           renderItem={({item}) => 
       
 
-          <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
+          <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10, marginBottom:10}}>
 
 <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue",fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Sorszám: #{item.idezet_id} </Text>
      

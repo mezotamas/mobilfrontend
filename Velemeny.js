@@ -57,6 +57,9 @@ export default class FetchExample extends React.Component {
 
   keres=()=>{
       //alert("Hello")
+    if(this.state.bevitel1=="" )
+      alert("Nem maradhat üresen!")
+      else{
       var bemenet={
         bevitel1:this.state.szo
       }
@@ -76,9 +79,11 @@ export default class FetchExample extends React.Component {
       
       );
   
-  }
+  }}
   velemeny=()=>{
-    
+    if(this.state.bevitel1=="" )
+      alert("Nem maradhat üresen!")
+      else{
     var bemenet={
       bevitel1:this.state.bevitel1,
       bevitelvelemenyid:this.state.valaszto2
@@ -99,7 +104,7 @@ export default class FetchExample extends React.Component {
     
     );
   }
-  
+  }
   render(){
 
     if(this.state.isLoading){
@@ -128,7 +133,7 @@ export default class FetchExample extends React.Component {
           
 
       <Picker 
-                style={{backgroundColor:"#42adf5",color:"white",marginTop:10, marginBottom:10}}
+                style={{backgroundColor:"#42adf5",color:"white",marginTop:10, marginBottom:10, marginLeft:10, marginRight:10}}
                 selectedValue={this.state.valaszto2}
                 onValueChange={(ertek) => 
 this.setState({valaszto2:ertek})
@@ -155,7 +160,7 @@ this.setState({valaszto2:ertek})
         onChangeText={(beirtszoveg)=>this.setState({szo:beirtszoveg})}
         value={this.state.szo}
       />
-        <TouchableOpacity style={{marginTop:10}}
+        <TouchableOpacity style={{marginTop:10, marginBottom:10, marginLeft:10, marginRight:10}}
         
         onPress={()=>this.keres()}
       >
@@ -169,7 +174,7 @@ this.setState({valaszto2:ertek})
 
           renderItem={({item}) => 
           
-          <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10}}>
+          <View style={{borderWidth:2,borderColor:"blue", borderRadius:7, marginLeft:10, marginRight:10, marginTop:10, marginBottom:10}}>
                  <Text style={{marginRight:"auto",marginLeft:"auto",color:"blue", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Sorszám: #{item.velemeny_id}</Text>
   
                  <Text style={{marginRight:"auto",marginLeft:"auto",color:"green",fontStyle:"italic", fontSize:20,textAlign:"center",marginLeft:10, marginRight:10, marginTop:10}}   >Felhasználó véleménye:</Text>
@@ -203,9 +208,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "blue",
     padding: 10,
-    width:300,
-    marginLeft:"auto",
-    marginRight:"auto",
+    marginLeft:10,
+    marginRight:10,
+    marginBottom:10,
      marginTop:10
   }
 });

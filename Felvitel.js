@@ -41,6 +41,9 @@ export default class FetchExample extends React.Component {
 
   felvitel=()=>{
       //alert("Hello")
+    if(this.state.bevitel1=="" || this.state.bevitel2==""||this.state.bevitel3=="")
+      alert("Egyetlen sor sem maradhat üresen!")
+      else{
       var bemenet={
         bevitel1:this.state.bevitel1,
         bevitel2:this.state.bevitel2,
@@ -65,7 +68,7 @@ export default class FetchExample extends React.Component {
       
       );
   
-  }
+  }}
   render(){
 
     if(this.state.isLoading){
@@ -101,7 +104,7 @@ export default class FetchExample extends React.Component {
         value={this.state.bevitel3}
       />
       <Picker 
-                style={{backgroundColor:"#42adf5",color:"white",marginTop:10, marginBottom:10}}
+                style={{backgroundColor:"#42adf5",color:"white",marginTop:10, marginBottom:10, marginLeft:10, marginRight:10}}
                 selectedValue={this.state.valaszto}
                 onValueChange={(ertek) => 
 this.setState({valaszto:ertek})
